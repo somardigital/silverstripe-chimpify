@@ -1,6 +1,7 @@
 <?php
 
-class ChimpifyContentSourceExtension extends DataExtension {
+class ChimpifyContentSourceExtension extends DataExtension
+{
     private static $db = [
         'SortOrder' => 'Int',
     ];
@@ -11,7 +12,8 @@ class ChimpifyContentSourceExtension extends DataExtension {
 
     public static $default_sort = 'SortOrder';
 
-    public function updateCMSFields(FieldList $fields) {
+    public function updateCMSFields(FieldList $fields)
+    {
         $fields->removeByName('SortOrder');
         $fields->removeByName('ChimpifyCampaignID');
 
