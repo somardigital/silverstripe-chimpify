@@ -4,10 +4,17 @@
     <div class="chimpify-sources">
         <% loop $ContentSources %>
         <% if $BlogPosts %>
-        <div class="chimpify-source">
+        <div class="chimpify-source $EvenOdd">
             <h3 class="chimpify-source-title">$Title</h3>
             <% loop $BlogPosts.Limit($Top.ItemLimit) %>
             <div class="chimpify-source-item">
+                <% if $FeaturedImage %>
+                <div class="chimpify-source-item-image-wrapper">
+                    <% with $FeaturedImage.ScaleMaxWidth(552) %>
+                        <img class="chimpify-source-item-image" src="$AbsoluteLink" alt="$Title" />
+                    <% end_with %>
+                </div>
+                <% end_if %>
                 <h4 class="chimpify-source-item-title">
                     <a href="$AbsoluteLink" title="Read the full article">$Title</a>
                 </h4>
