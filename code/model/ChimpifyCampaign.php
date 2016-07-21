@@ -34,20 +34,39 @@ class ChimpifyCampaign extends DataObject
         $fields->addFieldsToTab(
             'Root.Main',
             [
-                TextField::create('Title', 'Subject line'),
-                TextField::create('FromName', 'From name'),
-                EmailField::create('ReplyTo', 'Reply to email address'),
+                TextField::create(
+                    'Title',
+                    _t('Chimpify.FieldLabelSubjectLine', 'Subject line')
+                ),
+                TextField::create(
+                    'FromName',
+                    _t('Chimpify.FieldLabelFromName', 'From name')
+                ),
+                EmailField::create(
+                    'ReplyTo',
+                    _t('Chimpify.FieldLabelReplyTo', 'Reply to email address')
+                ),
                 DropdownField::create(
                     'TemplateID',
-                    'MailChimp template',
-                    $this->getMailChimpTemplates()->map('id', 'name')
-                    )->setEmptyString('Select...'),
-                TextareaField::create('Intro', 'Introduction')
-                    ->setDescription('Dispayled above the list of Blog posts.'),
-                NumericField::create('ItemLimit', 'Number of posts')
-                    ->setDescription(
-                        'The number of posts to display for each source selected below.'
+                    _t('Chimpify.FieldLabelMailChimpTemplate', 'MailChimp template'),
+                    $this->getMailChimpTemplates()->map('id', 'name'))
+                    ->setEmptyString(
+                        _t('Chimpify.FieldPlaceholderMailChimpTemplate', 'Select...')
                     ),
+                TextareaField::create(
+                    'Intro',
+                    _t('Chimpify.FieldLabelIntro', 'Introduction'))
+                    ->setDescription(_t(
+                        'Chimpify.FieldDescriptionIntro',
+                        'Dispayled above the list of Blog posts.'
+                    )),
+                NumericField::create(
+                    'ItemLimit',
+                    _t('Chimpify.FieldLabelItemLimit', 'Number of posts'))
+                    ->setDescription(_t(
+                        'Chimpify.FieldDescriptionItemLimit',
+                        'The number of posts to display for each source selected below.'
+                    )),
             ]
         );
 
@@ -60,7 +79,7 @@ class ChimpifyCampaign extends DataObject
             'Root.Main',
             GridField::create(
                 'ContentSources',
-                'Content sources',
+                _t('Chimpify.FieldLabelContentSources', 'Content sources'),
                 $this->ContentSources(),
                 $sourcesConfig
             )
@@ -78,7 +97,7 @@ class ChimpifyCampaign extends DataObject
         $actions->push(
             FormAction::create(
                 'doGenerateCampaign',
-                _t('Chimpify.GenerateCampaignButtonLabel', 'Create in MailChimp')
+                _t('Chimpify.ButtonLabelGenerateCampaign', 'Create in MailChimp')
             )
         );
 

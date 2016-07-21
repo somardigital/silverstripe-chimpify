@@ -23,7 +23,9 @@ class ChimpifyAdmin extends ModelAdmin
         $gridFieldConfig->removeComponentsByType('GridFieldExportButton');
         $gridFieldConfig
             ->getComponentByType('GridFieldAddNewButton')
-            ->setButtonName('Add MailChimp Campaign');
+            ->setButtonName(
+                _t('Chimpify.ButtonLabelAddMailChimpCampaign', 'Add MailChimp Campaign')
+            );
         $gridFieldConfig
             ->getComponentByType('GridFieldDetailForm')
             ->setItemRequestClass('ChimpifyRequestHandler');
@@ -151,7 +153,7 @@ class ChimpifyRequestHandler extends GridFieldDetailForm_ItemRequest
 
         $form->sessionMessage(
             _t(
-                'Chimpify.GenerateCampaignSuccessMessage',
+                'Chimpify.MessageGenerateCampaignSuccess',
                 'Successfully created MailChimp Campaign'
             ),
             'good'

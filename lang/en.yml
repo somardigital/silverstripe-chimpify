@@ -1,4 +1,15 @@
 en:
   Chimpify:
-    GenerateCampaignButtonLabel: 'Create in MailChimp'
-    GenerateCampaignSuccessMessage: 'Successfully created MailChimp Campaign'
+    ButtonLabelGenerateCampaign: 'Create in MailChimp'
+    ButtonLabelAddMailChimpCampaign: 'Add MailChimp Campaign'
+    FieldLabelSubjectLine: 'Subject line'
+    FieldLabelFromName: 'From name'
+    FieldLabelReplyTo: 'Reply to email address'
+    FieldLabelMailChimpTemplate: 'MailChimp template'
+    FieldPlaceholderMailChimpTemplate: 'Select...'
+    FieldLabelIntro: 'Introduction'
+    FieldDescriptionIntro: 'Dispayled above the list of Blog posts.'
+    FieldLabelItemLimit: 'Number of posts'
+    FieldDescriptionItemLimit: 'The number of posts to display for each source selected below.'
+    FieldLabelContentSources: 'Content sources'
+    MessageGenerateCampaignSuccess: 'Successfully created MailChimp Campaign'
