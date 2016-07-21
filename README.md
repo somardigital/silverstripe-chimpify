@@ -2,7 +2,7 @@
 
 Generates MailChimp campaigns from SilverStripe blogs.
 
-![Main view](docs/en/_images/modeladmin.png)
+![Main view](docs/en/images/modeladmin.png)
 
 ## Requirements
 
