@@ -1,0 +1,4 @@
+en:
+  Chimpify:
+    GenerateCampaignButtonLabel: 'Create in MailChimp'
+    GenerateCampaignSuccessMessage: 'Successfully created MailChimp Campaign'

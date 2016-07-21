@@ -1,0 +1,30 @@
+{
+  "name": "somardesignstudios/silverstripe-chimpify",
+  "description": "Generates MailChimp campaign content from blogs posts",
+  "keywords": [
+    "silverstripe",
+    "blog",
+    "mailchimp"
+  ],
+  "type": "silverstripe-module",
+  "require": {
+    "php": ">=5.4.0",
+    "silverstripe/blog": "^2.4",
+    "drewm/mailchimp-api": "^2.2",
+    "undefinedoffset/sortablegridfield": "^0.6.2"
+  },
+  "require-dev": {
+    "phpunit/PHPUnit": "~3.7@stable"
+  },
+  "extra": {
+    "branch-alias": {
+      "3.x-dev": "3.4.x-dev"
+    }
+  },
+  "license": "BSD-2-Clause",
+  "config": {
+    "process-timeout": 600
+  },
+  "prefer-stable": true,
+  "minimum-stability": "dev"
+}
