@@ -1,5 +1,9 @@
 # Documentation
 
+## Installation
+
+`composer require somardesignstudios/silverstripe-chimpify`
+
 ## Configuration
 
 Add your MailChimp API key to the SilverStripe config.
