@@ -122,7 +122,9 @@ class ChimpifyCampaign extends DataObject
         }
 
         foreach ($response['templates'] as $template) {
-            $templates->push(ArrayData::create($template));
+            if ($template['type'] == 'user') {
+                $templates->push(ArrayData::create($template));
+            }
         }
 
         $this->extend('updateMailChimpTemplates', $templates);
