@@ -16,11 +16,11 @@
                 </div>
                 <% end_if %>
                 <h4 class="chimpify-source-item-title">
-                    <a href="$AbsoluteLink" title="Read the full article">$Title</a>
+                    <a href="$AbsoluteLink" title="Read the full article" target="_blank">$Title</a>
                 </h4>
                 <div class="chimpify-source-item-content">
                     $Content.Summary
-                    <a href="$AbsoluteLink" title="Read the full article">
+                    <a href="$AbsoluteLink" title="Read the full article" target="_blank">
                         Read&nbsp;more&nbsp;&rsaquo;
                     </a>
                 </div>
