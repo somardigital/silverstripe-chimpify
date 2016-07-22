@@ -67,12 +67,12 @@ class ChimpifyRequestHandler extends GridFieldDetailForm_ItemRequest
      * @param MailChimp $mailChimp
      * @return Array
      */
-    private function handleMailChimpResponse($mailChimp)
+    public function handleMailChimpResponse($mailChimp)
     {
         $response = $mailChimp->getLastResponse();
 
         if (!$mailChimp->success()) {
-            $message = is_array($response['errors'])
+            $message = $response && array_key_exists($response['errors'])
                 ? $response['errors'][0]['message']
                 : 'Error connecting to MailChimp API';
 
@@ -88,7 +88,7 @@ class ChimpifyRequestHandler extends GridFieldDetailForm_ItemRequest
      * @param MailChimp $mailChimp
      * @return Array
      */
-    private function createCampaign($mailChimp)
+    public function createCampaign($mailChimp)
     {
         $mailChimp->post('campaigns', [
           'type' => 'regular',
@@ -109,7 +109,7 @@ class ChimpifyRequestHandler extends GridFieldDetailForm_ItemRequest
      * @param Int $campaignID
      * @return Array
      */
-    private function populateCampaignContent($mailChimp, $campaignID)
+    public function populateCampaignContent($mailChimp, $campaignID)
     {
         $mailChimp->put("campaigns/{$campaignID}/content", [
             'template' => [

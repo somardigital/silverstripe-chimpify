@@ -14,5 +14,4 @@ See the [docs folder](docs/en/index.md).
 
 ## TODO
 
-- Write some tests.
 - Make the module more generic. Generate content from any DataObject, not just Blogs.
