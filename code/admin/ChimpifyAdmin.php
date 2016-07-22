@@ -69,15 +69,15 @@ class ChimpifyRequestHandler extends GridFieldDetailForm_ItemRequest
      */
     private function handleMailChimpResponse($mailChimp)
     {
+        $response = $mailChimp->getLastResponse();
+
         if (!$mailChimp->success()) {
-            $message = is_array($result['errors'])
-                ? $result['errors'][0]['message']
+            $message = is_array($response['errors'])
+                ? $response['errors'][0]['message']
                 : 'Error connecting to MailChimp API';
 
             user_error($message, E_USER_ERROR);
         }
-
-        $response = $mailChimp->getLastResponse();
 
         return Convert::json2array($response['body']);
     }

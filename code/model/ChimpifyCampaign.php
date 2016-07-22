@@ -133,8 +133,8 @@ class ChimpifyCampaign extends DataObject
         $response = $mailChimp->get('templates');
 
         if (!$mailChimp->success()) {
-            $message = is_array($result['errors'])
-                ? $result['errors'][0]['message']
+            $message = is_array($response['errors'])
+                ? $response['errors'][0]['message']
                 : 'Error connecting to MailChimp API';
 
             user_error($message, E_USER_ERROR);
