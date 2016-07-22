@@ -27,9 +27,18 @@ class ChimpifyCampaign extends DataObject
 
     public function getCMSFields()
     {
+        if (!$api_key = $this->config()->get('api_key')) {
+            user_error(
+                'Add a MailChimp API key to config (ChimpifyCampaign::api_key)',
+                E_USER_ERROR
+            );
+        }
+
         $fields = parent::getCMSFields();
 
         $fields->removeByName('ContentSources');
+
+        $mailChimp = new MailChimp($api_key);
 
         $fields->addFieldsToTab(
             'Root.Main',
@@ -49,7 +58,7 @@ class ChimpifyCampaign extends DataObject
                 DropdownField::create(
                     'TemplateID',
                     _t('Chimpify.FieldLabelMailChimpTemplate', 'MailChimp template'),
-                    $this->getMailChimpTemplates()->map('id', 'name'))
+                    $this->getMailChimpTemplates($mailChimp)->map('id', 'name'))
                     ->setEmptyString(
                         _t('Chimpify.FieldPlaceholderMailChimpTemplate', 'Select...')
                     ),
@@ -116,24 +125,16 @@ class ChimpifyCampaign extends DataObject
     /**
      * Fetches a list of email templates from MailChimp.
      *
+     * @param MailChimp $mailChimp
      * @return ArrayList
      */
-    private function getMailChimpTemplates()
+    public function getMailChimpTemplates($mailChimp)
     {
-        if (!$api_key = $this->config()->get('api_key')) {
-            user_error(
-                'Add a MailChimp API key to config (ChimpifyCampaign::api_key)',
-                E_USER_ERROR
-            );
-        }
-
         $templates = ArrayList::create();
-
-        $mailChimp = new MailChimp($api_key);
         $response = $mailChimp->get('templates');
 
         if (!$mailChimp->success()) {
-            $message = is_array($response['errors'])
+            $message = $response && array_key_exists($response['errors'])
                 ? $response['errors'][0]['message']
                 : 'Error connecting to MailChimp API';
 
