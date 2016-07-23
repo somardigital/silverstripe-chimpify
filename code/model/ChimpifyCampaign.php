@@ -15,11 +15,13 @@ class ChimpifyCampaign extends DataObject
         'ItemLimit' => 'Int',
     ];
 
-    private static $has_many = [
+    private static $many_many = [
         'ContentSources' => 'Blog',
     ];
 
-    private static $defaults = array('ItemLimit' => 3);
+    private static $defaults = [
+        'ItemLimit' => 3,
+    ];
 
     private static $singular_name = 'MailChimp Campaign';
 
@@ -36,6 +38,7 @@ class ChimpifyCampaign extends DataObject
 
         $fields = parent::getCMSFields();
 
+        $fields->removeByName('ItemLimit');
         $fields->removeByName('ContentSources');
 
         $mailChimp = new MailChimp($api_key);
@@ -69,30 +72,33 @@ class ChimpifyCampaign extends DataObject
                         'Chimpify.FieldDescriptionIntro',
                         'Dispayled above the list of Blog posts.'
                     )),
-                NumericField::create(
-                    'ItemLimit',
-                    _t('Chimpify.FieldLabelItemLimit', 'Number of posts'))
-                    ->setDescription(_t(
-                        'Chimpify.FieldDescriptionItemLimit',
-                        'The number of posts to display for each source selected below.'
-                    )),
             ]
         );
 
-        $sourcesConfig = GridFieldConfig_RelationEditor::create();
-        $sourcesConfig->removeComponentsByType('GridFieldEditButton');
-        $sourcesConfig->removeComponentsByType('GridFieldAddNewButton');
-        $sourcesConfig->addComponent(new GridFieldSortableRows('SortOrder'));
+        if ($this->ID) {
+            $sourcesConfig = GridFieldConfig_RelationEditor::create();
+            $sourcesConfig->removeComponentsByType('GridFieldEditButton');
+            $sourcesConfig->removeComponentsByType('GridFieldAddNewButton');
 
-        $fields->addFieldToTab(
-            'Root.Main',
-            GridField::create(
-                'ContentSources',
-                _t('Chimpify.FieldLabelContentSources', 'Content sources'),
-                $this->ContentSources(),
-                $sourcesConfig
-            )
-        );
+            $fields->addFieldsToTab(
+                'Root.Main',
+                [
+                    GridField::create(
+                        'ContentSources',
+                        _t('Chimpify.FieldLabelContentSources', 'Content sources'),
+                        $this->ContentSources(),
+                        $sourcesConfig
+                    ),
+                    NumericField::create(
+                        'ItemLimit',
+                        _t('Chimpify.FieldLabelItemLimit', 'Number of posts'))
+                        ->setDescription(_t(
+                            'Chimpify.FieldDescriptionItemLimit',
+                            'The number of posts to display from each content source.'
+                        )),
+                ]
+            );
+        }
 
         $this->extend('updateCMSFields', $fields);
 
