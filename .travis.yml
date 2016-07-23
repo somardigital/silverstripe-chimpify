@@ -1,0 +1,27 @@
+language: php
+
+php:
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+
+env:
+  - DB=MYSQL CORE_RELEASE=3.2
+
+before_script:
+  - vendor/bin/phpunit --coverage-clover silverstripe-chimpify/coverage.clover silverstripe-chimpify/tests
+  - cd silverstripe-chimpify
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+
+script:
+  - vendor/bin/phpunit silverstripe-chimpify/tests
+
+branches:
+  only:
+    - master
+
+matrix:
+  allow_failures:
+    - php: 7.0
