@@ -6,25 +6,21 @@
 
 ## Configuration
 
-Add your MailChimp API key to the SilverStripe config.
+### SilverStripe
 
-__mysite/_config/config.yml__
+Add your MailChimp API key and the required `$belongs_many_many` relation to
+`mysite/_config/config.yml`
 
 ```yml
 ChimpifyCampaign:
   api_key: 'YOUR_MAILCHIMP_API_KEY'
-```
 
-Extend `Blog` with `ChimpifyContentSourceExtension`. This provides Blog with the `$has_one` relation
-required by `ChimpifyCampaign`.
-
-__mysite/_config/config.yml__
-
-```yml
 Blog:
   extensions:
     - ChimpifyContentSourceExtension
 ```
+
+### MailChimp
 
 Add an [editable content area](http://kb.mailchimp.com/templates/code/create-editable-content-areas-with-mailchimps-template-language)
 named `chimpify` to your MailChimp Template. This is where your Blog content will be populated.

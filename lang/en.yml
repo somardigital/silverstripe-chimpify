@@ -10,6 +10,6 @@ en:
     FieldLabelIntro: 'Introduction'
     FieldDescriptionIntro: 'Dispayled above the list of Blog posts.'
     FieldLabelItemLimit: 'Number of posts'
-    FieldDescriptionItemLimit: 'The number of posts to display for each source selected below.'
+    FieldDescriptionItemLimit: 'The number of posts to display from each content source.'
     FieldLabelContentSources: 'Content sources'
     MessageGenerateCampaignSuccess: 'Successfully created MailChimp Campaign'
